@@ -149,7 +149,7 @@ while True:
 
                             previous_status[(floor_id, zone_id, sensor_id)] = status
 
-                        if (status == 2):
+                        if (status == 4):
                             insert_activity_log(floor_id, zone_id, sensor_id, "Faulty")
 
             zone_start_index = byte_data.find(b'\xAA', zone_start_index + 1)
@@ -157,3 +157,4 @@ while True:
 ser.close()
 cursor.close()
 db_connection.close()
+
