@@ -125,7 +125,7 @@ while True:
             floor_id = 2
 
         while zone_start_index != -1:
-            zone_id = byte_data[zone_start_index + 1] + 1
+            zone_id = byte_data[zone_start_index + 1]
             zone_data = extract_sensor_data(zone_start_index, floor_id, zone_id)
             
             if zone_data is not None:
@@ -149,7 +149,7 @@ while True:
 
                             previous_status[(floor_id, zone_id, sensor_id)] = status
 
-                        if (status == 4):
+                        if (status == 3):
                             insert_activity_log(floor_id, zone_id, sensor_id, "Faulty")
 
             zone_start_index = byte_data.find(b'\xAA', zone_start_index + 1)
@@ -157,4 +157,3 @@ while True:
 ser.close()
 cursor.close()
 db_connection.close()
-
